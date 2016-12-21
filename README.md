@@ -1,7 +1,9 @@
 # BSregression
 
-As usual: _caveat emptor_ (buyer beware). As the license says, while you are free to use the scripts as you please, I am not liable for anything that happens as a result of using my scripts :-). Also, the scripts are technically the intellectual properties of EPFL, which has been kind enough to allow their redistribution under the liberal BSD-3 license (acting through Prof. Marilyne Andersen).
+As usual: _caveat emptor_ (buyer beware). As the license says, while you are free to use the scripts as you please, I am not liable for anything that happens as a result of using my scripts :-). 
 
-If you have questions or concerns, or notice errors, please contact me at contact@paragrastogi.com .
+The scripts are technically the intellectual properties of EPFL and Riken-AIP group, which have both been kind enough to allow their redistribution under the liberal BSD-3 license (acting through Prof. Marilyne Andersen at EPFL and Prof. Masashi Sugiyama / Dr M. Emtiyaz Khan at Riken-AIP).
+
+If you have questions or concerns, or notice errors, please contact me at rastogi.epfl@gmail.com .
 
 Happy regressing!
