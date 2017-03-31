@@ -1,7 +1,7 @@
 clear; clc; close all;
 
 % Choose load type
-lo = 2;
+lo = 1;
 
 % Choose a random seed to plot. There are 100 model variants
 % trained in each case, using different random seeds from 1
@@ -18,20 +18,12 @@ DefaultColours
 % The name of the data "series" that is currently being
 % processed.
 trainser = 'BaseSimulation';
-testser = 'DOE_ideal';
+testser = 'BaseSimulation';
 
 features = true(28,1);
 
-if strcmp(trainser, 'BaseSimulation')
 err_ylims = [0, 0.7; 0, 0.7];
 rmse_ylims = [0, 160; 0, 80];
-elseif strcmp(trainser, 'M')
-err_ylims = [0, 0.9; 0, 0.9];
-rmse_ylims = [0, 200; 0, 80];
-elseif strcmp(trainser, 'G')
-err_ylims = [0, 0.9; 0, 0.9];
-rmse_ylims = [0, 80; 0, 80];
-end
 
 binlims = [0, 200; 0, 100];
 xlims = [-5, 200; -2.5, 100];
@@ -96,44 +88,12 @@ elseif strcmp(trainser, 'G')
     dated = '27-Dec-2016';
 end
 
-if strcmp(trainser, 'DOE_ideal')
-    % This series is a special case because it isn't used
-    % for training - only for deployment.
-    load(fullfile(pathMATdir, ...
-        'trainN_BaseSimulation_02-Dec-2016'));
-    
-    % This renaming is necessary because the meaning of
-    % test_idx is different in this script.
-    testidx_train = test_idx;
-    
-else
-    load(fullfile(pathMATdir, ...
-        ['trainN_', trainser,'_',dated]))
-    
-    % This renaming is necessary because the meaning of
-    % test_idx is different in this script.
-    testidx_train = test_idx;
-    
-end
+load(fullfile(pathMATdir, ...
+    ['trainN_', trainser,'_',dated]))
 
-if strcmp(testser, 'DOE_ideal')
-    % This series is a special case because it isn't used
-    % for training - only for deployment.
-    load(fullfile(pathMATdir, ...
-        'trainN_BaseSimulation_02-Dec-2016'));
-    
-    % This renaming is necessary because the meaning of
-    % test_idx is different in this script.
-    testidx_test = test_idx;
-    
-else
-    
-    load(fullfile(pathMATdir, ...
-        ['trainN_', testser, '_', dated]))
-    
-    testidx_test = test_idx;
-    
-end
+% This renaming is necessary because the meaning of
+% test_idx is different in this script.
+testidx_train = test_idx;
 
 
 % Load the xin, yin, etc. for the training series.

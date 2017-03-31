@@ -52,6 +52,8 @@ addParameter(p,'warm', false, @islogical)
 
 addParameter(p, 'fnames', {'a','b','c','d'}, @iscellstr)
 
+addParameter(p, 'optsn', false, @islogical)
+
 parse(p, seed, xtrain, ytrain, ...
     xtest, ytest, N, path_save_fldr, varargin{:})
 
@@ -70,6 +72,7 @@ rmode = p.Results.rmode;
 batcher = p.Results.batcher;
 fnames = p.Results.fnames;
 hypfix = p.Results.hypfix;
+optsn = p.Results.optsn;
 
 diary(fullfile(path_save_fldr, ...
     sprintf('Run_%s_%d.txt', date, seed)))
@@ -101,10 +104,13 @@ gplin_idx = strcmpi(modlist,'gp-liniso');
 
 % This is the number of hyperparameters that will be
 % required by each function above.
-hypnum = [0;1;0;size(xtrain,2);2;size(xtrain,2)+1]; %  + 1
+hypnum = [0;1;0;size(xtrain,2);2;size(xtrain,2)+1]; 
+if optsn 
+    % The noise variance is not passed as a hyperparameter.
+    hypnum = hypnum + 1;
+end
 % This is the seed value that will be passed as a start
 % point to the minimise function.
-% The noise variance is not passed as a hyperparameter.
 hypseed = 0;
 
 % % % Set delta here
